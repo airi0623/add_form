@@ -1,0 +1,59 @@
+<%# app/views/products/_form.html.erb (細かなタグは省略) ------------------------%>
+
+<%# <%= form_for(url: "#", method: method) do |f| %> 
+<%# <%= form_with url: "#", local: true do |f| %> 
+
+
+<b>受注明細</b>
+<div class="text-right">
+  <%= link_to_add_association '材料を追加', f, :product,
+    class: 'btn btn-default',
+    data: {
+      association_insertion_node: '#detail-association-insertion-point',
+      association_insertion_method: 'append' }
+  %>
+</div> 
+
+<table class="table table-list">
+  <thead>
+    <tr>
+      <th>材料</th>
+      <th>単位</th>
+      <th>量</th>
+      <th>単位</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody id='detail-association-insertion-point'>
+    <div class="form-group">
+      <%# <%= f.fields_for :order_details do |f| %> 
+      <%= form_with url: "#", local: true do |f| %>
+      <%# app/views/products/_order_detail_fields.html.erb ------------------------------------%>
+        <tr class="nested-fields">
+          <%# <%= f.hidden_field :id %>
+          <%# <td>
+          <%= f.collection_select :product_id, f.object.selectable_products, :id, :name, {}, class: 'form-control' 
+          </td> %> 
+          <td>
+          <%= f.text_field :ingredient, class: 'form-control ingredient', placeholder: "例）にんじん"%>
+          </td>
+          <td>
+          <%= f.text_field :unit_id, class: 'form-control unit',placeholder: "選択してください" %>
+          </td>
+          <td>
+          <%= f.text_field :amount, class: 'form-control amount',placeholder: "例）100" %>
+          </td>
+          <td>
+          <%= f.text_field :unit_id, class: 'form-control unit',placeholder: "選択してください"  %>
+          </td>
+          <td>
+          <%= link_to '削除', url: "#", class: 'btn btn-default' %>
+          <%# <%= link_to_remove_association '削除', f, class: 'btn btn-default' %> 
+          </td> 
+        </tr>
+        <%= f.submit '登録', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </tbody>
+</table>

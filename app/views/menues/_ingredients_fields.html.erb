@@ -1,0 +1,22 @@
+
+
+<tr class="nested-fields">
+  
+  <td>
+  <%= f.text_field :material, class: 'form-control ingredient', placeholder: "例）にんじん"%>
+  </td>
+  <%= f.hidden_field :id %>
+  <td>
+  <%= f.collection_select :unit_id, Unit.all, :id, :name, {}, class: 'form-control' %>
+  </td>
+  <td>
+  <%= f.text_field :amount, class: 'form-control amount',placeholder: "例）100" %>
+  </td>
+  <%= f.hidden_field :id %>
+  <td>
+  <%= f.collection_select :unit_id, Unit.all,  :id, :name, {}, class: 'form-control' %>
+  </td>
+  <td>
+  <%= link_to '削除', url: "#", class: 'btn btn-default' %>
+  </td> 
+</tr>

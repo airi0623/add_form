@@ -1,0 +1,25 @@
+<%# コンテンツごとにタイトルを指定できる %>
+<% content_for(:title) do %>
+  メニュー
+<% end %>
+
+<%= form_with model: @menu, url: menues_path, local: true do |form| %>
+    <%= form.label :menu %>
+    <%= form.text_field :menu %>
+    <div class="menu">
+      <%= form.fields_for :ingredients do |i| %>
+          <%= render "ingredients_fields", f: i %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association '材料を追加', form, :ingredients,
+        class: 'btn btn-default',
+        data: {
+          association_insertion_node: '#detail-association-insertion-point',
+          association_insertion_method: 'append' }
+        %>            
+      </div>
+    </div>
+    <div class="actions">
+        <%= f.submit %>
+    </div>
+<% end %>
